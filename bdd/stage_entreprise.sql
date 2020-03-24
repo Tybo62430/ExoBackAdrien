@@ -17,7 +17,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema stage_entreprise
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `stage_entreprise` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci ;
+CREATE SCHEMA IF NOT EXISTS `stage_entreprise` DEFAULT CHARACTER SET utf8mb4  ;
 USE `stage_entreprise` ;
 
 -- -----------------------------------------------------
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `stage_entreprise`.`entreprise` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+;
 
 
 -- -----------------------------------------------------
@@ -42,13 +42,13 @@ CREATE TABLE IF NOT EXISTS `stage_entreprise`.`annonce` (
   `date` DATETIME NULL DEFAULT NULL,
   `remuneration` DECIMAL(10,0) NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_annonce_entreprise1_idx` (`entreprise_id` ASC) VISIBLE,
+  INDEX `fk_annonce_entreprise1_idx` (`entreprise_id` ASC) ,
   CONSTRAINT `fk_annonce_entreprise1`
     FOREIGN KEY (`entreprise_id`)
     REFERENCES `stage_entreprise`.`entreprise` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+;
 
 
 -- -----------------------------------------------------
@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `stage_entreprise`.`etudiant` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+;
 
 
 -- -----------------------------------------------------
@@ -74,9 +74,9 @@ CREATE TABLE IF NOT EXISTS `stage_entreprise`.`contact` (
   `date` DATETIME NULL DEFAULT NULL,
   `annonce_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_contact_entreprise_idx` (`entreprise_id` ASC) VISIBLE,
-  INDEX `fk_contact_etudiant1_idx` (`etudiant_id` ASC) VISIBLE,
-  INDEX `fk_contact_annonce1_idx` (`annonce_id` ASC) VISIBLE,
+  INDEX `fk_contact_entreprise_idx` (`entreprise_id` ASC) ,
+  INDEX `fk_contact_etudiant1_idx` (`etudiant_id` ASC) ,
+  INDEX `fk_contact_annonce1_idx` (`annonce_id` ASC) ,
   CONSTRAINT `fk_contact_annonce1`
     FOREIGN KEY (`annonce_id`)
     REFERENCES `stage_entreprise`.`annonce` (`id`),
@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `stage_entreprise`.`contact` (
     REFERENCES `stage_entreprise`.`etudiant` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+;
 
 
 -- -----------------------------------------------------
@@ -99,8 +99,8 @@ CREATE TABLE IF NOT EXISTS `stage_entreprise`.`convention` (
   `annonce_id` INT NOT NULL,
   `etudiant_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_convention_annonce1_idx` (`annonce_id` ASC) VISIBLE,
-  INDEX `fk_convention_etudiant1_idx` (`etudiant_id` ASC) VISIBLE,
+  INDEX `fk_convention_annonce1_idx` (`annonce_id` ASC) ,
+  INDEX `fk_convention_etudiant1_idx` (`etudiant_id` ASC) ,
   CONSTRAINT `fk_convention_annonce1`
     FOREIGN KEY (`annonce_id`)
     REFERENCES `stage_entreprise`.`annonce` (`id`),
@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `stage_entreprise`.`convention` (
     REFERENCES `stage_entreprise`.`etudiant` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+;
 
 
 -- -----------------------------------------------------
@@ -121,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `stage_entreprise`.`enseignant` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+;
 
 
 -- -----------------------------------------------------
@@ -132,8 +132,8 @@ CREATE TABLE IF NOT EXISTS `stage_entreprise`.`visite` (
   `enseignant_id` INT NOT NULL,
   `entreprise_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_visite_enseignant1_idx` (`enseignant_id` ASC) VISIBLE,
-  INDEX `fk_visite_entreprise1_idx` (`entreprise_id` ASC) VISIBLE,
+  INDEX `fk_visite_enseignant1_idx` (`enseignant_id` ASC) ,
+  INDEX `fk_visite_entreprise1_idx` (`entreprise_id` ASC) ,
   CONSTRAINT `fk_visite_enseignant1`
     FOREIGN KEY (`enseignant_id`)
     REFERENCES `stage_entreprise`.`enseignant` (`id`),
@@ -142,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `stage_entreprise`.`visite` (
     REFERENCES `stage_entreprise`.`entreprise` (`id`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
+;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;

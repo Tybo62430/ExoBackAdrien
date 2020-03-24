@@ -1,0 +1,19 @@
+﻿version: "3.1"
+# permet de charger tous les logiciels dont notre projet dépend
+services:
+    db:
+      image: mariadb:10.4.8 # image qui sera téléchargé depuis le site docker-hub.com
+      container_name: stage_entreprise 
+      environment:
+        - MYSQL_ROOT_PASSWORD=root
+        - MYSQL_USER=user
+        - MYSQL_PASSWORD=user
+      volumes: 
+        - ./bdd:/docker-entrypoint-initdb.d
+      ports:
+        - 2306:3306
+
+    adminer:
+      image: adminer 
+      ports:
+        - 2307:8080
