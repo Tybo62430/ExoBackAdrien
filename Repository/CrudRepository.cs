@@ -10,7 +10,7 @@ namespace ExoBackAdrien.Repository
         public IQueryable<T> Filter(T model);
         public IQueryable<T> FindAll();
         public T FindById(int id);
-        public IQueryable<T> Remove(int Id);
+        public void Remove(int id);
         public T Update(T model);
         public T Save(T model);
     }
