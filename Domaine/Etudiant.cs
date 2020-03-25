@@ -3,15 +3,14 @@ using System.Collections.Generic;
 
 namespace ExoBackAdrien.Domaine
 {
-    public partial class Etudiant
+    public partial class Etudiant : Model
     {
         public Etudiant()
         {
             Contact = new HashSet<Contact>();
             Convention = new HashSet<Convention>();
         }
-
-        public int Id { get; set; }
+        
         public string Nom { get; set; }
         public string Prenom { get; set; }
 

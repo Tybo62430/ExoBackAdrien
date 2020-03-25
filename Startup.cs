@@ -12,6 +12,10 @@ using Microsoft.Extensions.Logging;
 
 namespace ExoBackAdrien
 {
+    using ExoBackAdrien.Domaine;
+    using ExoBackAdrien.Repository;
+    using Microsoft.EntityFrameworkCore;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -24,6 +28,8 @@ namespace ExoBackAdrien
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<stage_entrepriseContext>(options => options.UseMySql("server=localhost;port=2306;user=root;password=root;database=stage_entreprise", x => x.ServerVersion("10.4.8-mariadb")));
+            services.AddTransient(typeof(EtudiantRepository));
             services.AddControllers();
         }
 
