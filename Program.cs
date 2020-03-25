@@ -9,11 +9,14 @@ using Microsoft.Extensions.Logging;
 
 namespace ExoBackAdrien
 {
+    using ExoBackAdrien.Domaine;
+    using ExoBackAdrien.Repository;
     public class Program
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            //CreateHostBuilder(args).Build().Run();
+            stage_entrepriseContext context = new stage_entrepriseContext();            
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
